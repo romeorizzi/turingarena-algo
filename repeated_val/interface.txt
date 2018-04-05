@@ -1,0 +1,16 @@
+function repeated_val(int n, int[] a) -> int;
+
+main {
+   var int N;
+   read N;
+   
+   var int[] vec;
+   alloc vec:N;
+   
+   for(i:N) {
+      read vec[i]; 
+   }   
+   var int risp;
+   call repeated_val(N, vec) -> risp;
+   write risp;
+}
