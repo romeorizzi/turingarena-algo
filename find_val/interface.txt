@@ -1,4 +1,4 @@
-function store_list(int n, int[] lista_vals) -> void;
+function store_list(int n, int[] lista_vals);
 function find_val(int val) -> int;
 // find_val ritorna la prima posizione di val nella lista lista_vals
 // ritorna -1 se val non appare in lista_vals
@@ -13,6 +13,9 @@ main {
    }
 
    call store_list(N, vec);
+
+   checkpoint;
+   flush;
 
    var int key_val;
    read key_val;
