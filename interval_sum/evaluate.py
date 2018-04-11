@@ -9,13 +9,13 @@ def evaluate(algorithm):
     goals["linear"] = (
         all(
             evaluate_case(algorithm, n, a=n//4, b=3*n//4, time_limit=0.1)
-            for n in (10, 100, 1000, 10**4)
+            for n in (10, 100, 1000, 10**4, 10**5, 10**6)
         )
     )
     goals["sublinear"] = (
         goals["linear"]
         and
-        evaluate_case(algorithm, 10**4, a=127, b=10**3, time_limit=0.00001)
+        evaluate_case(algorithm, 10**6, a=127, b=10**3, time_limit=0.0001)
     )
 
     return {"goals": goals}
@@ -27,9 +27,11 @@ def evaluate_case(algorithm, n, a, b, time_limit):
         risp = run(algorithm, vals, a, b, time_limit)
     except AlgorithmRuntimeError as e:
         print(n, time_limit, e, file=sys.stderr)
+        print ("You take too much time to answer a query.")
         return False
-        if risp != sum(vals[a:b+1]):
-            return False
+    if risp != sum(vals[a:b+1]):
+        print ("The sum value returned is not correct.")
+        return False
     return True
 
 
