@@ -9,27 +9,20 @@ def evaluate(algorithm):
     goals = {}
     goals["linear"] = (
         all(
-            evaluate_present(algorithm, n, time_limit=0.1)
-            for n in (10, 100, 1000)
-        )
-        and
-        all(
-            evaluate_absent(algorithm, n, time_limit=0.1)
+            evaluate_case(algorithm, n, time_limit=0.1, also_absent=True)
             for n in (10, 100, 1000)
         )
     )
     goals["sublinear"] = (
         goals["linear"]
         and
-        evaluate_present(algorithm, 1000000, time_limit=0.01)
-        and
-        evaluate_absent(algorithm, 1000000, time_limit=0.01)
+        evaluate_case(algorithm, 1000000, time_limit=0.01, also_absent=True)
     )
 
     return {"goals": goals}
 
 
-def evaluate_present(algorithm, n, time_limit):
+def evaluate_case(algorithm, n, time_limit, also_absent):
     vals = random.choices(value_range, k=n)
     val = random.choice(vals)
     try:
@@ -37,20 +30,20 @@ def evaluate_present(algorithm, n, time_limit):
     except AlgorithmRuntimeError as e:
         print(n, time_limit, e, file=sys.stderr)
         return False
-    return vals[index] == val
-
-
-def evaluate_absent(algorithm, n, time_limit):
-    vals = random.choices(value_range, k=n)
-    val = vals[0]
-    while val in vals:
-        val = random.choice(value_range)
-    try:
-        index = run(algorithm, vals, val, time_limit)
-    except AlgorithmRuntimeError as e:
-        print(n, time_limit, e, file=sys.stderr)
-        return False
-    return index == -1
+    if vals[index] != val:
+        return False;
+    if also_absent:
+        val = vals[0]
+        while val in vals:
+           val = random.choice(value_range)
+        try:
+            index = run(algorithm, vals, val, time_limit)
+        except AlgorithmRuntimeError as e:
+            print(n, time_limit, e, file=sys.stderr)
+            return False
+        if index != -1:
+            return False
+    return True
 
 
 def run(algorithm, vals, val, time_limit):
