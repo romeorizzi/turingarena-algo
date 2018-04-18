@@ -1,0 +1,18 @@
+callback get_med_of_3(int a, int b, int c) -> int {
+    write a, b, c;
+    flush;
+    var int ans;
+    read ans;
+    return ans;
+}
+
+function find_mediana(int n) -> int;
+
+main {
+    var int n;
+    read n;
+    // the number of elements is always odd (python "assert n%2";)
+    var int ans;
+    call find_mediana(n) -> ans;
+    write ans;
+}

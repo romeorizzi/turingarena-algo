@@ -1,0 +1,29 @@
+function get_matrix(int m, int n, int[][] mat);
+function rectangle_sum(int r1, int r2, int c1, int c2) -> int;
+// rectangle_sum returns the sum of the elements within the [r1,r2]X[c1,c2] rectangular submatrix of mat,
+//   that is, the value \sum_{i=r1}^{r2} \sum_{j=c1}^{c2} mat[i][j]
+// special case: returns 0 if r2 == r1-1 OR c2 == c1-1
+
+main {
+   var int M,N;
+   read M,N;   
+   var int[][] mat;
+   alloc mat:M;   
+   for(i:M) {
+      alloc mat:N;   
+      for(j:M) {
+         read mat[i][j]; 
+      }
+   }   
+
+   call get_matrix(M, N, mat);
+
+   checkpoint;
+   flush;
+
+   var int r1, r2, c1, c2, risp;
+   read r1, r2, c1, c2;
+
+   call rectangle_sum(r1, r2, c1, c2) -> risp;
+   write risp;
+}

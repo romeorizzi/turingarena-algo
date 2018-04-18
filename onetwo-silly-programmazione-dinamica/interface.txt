@@ -1,0 +1,11 @@
+var int n;      // lunghezza del vettore in input
+var int[] vect; // il vettore in input
+function min_val() -> int;
+
+main {
+   input n;
+   alloc vect : n;
+   for(i:n) { input vect[i]; }
+   var int risp; call min_val() -> risp;
+   output risp;
+}
