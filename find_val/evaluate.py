@@ -1,53 +1,53 @@
-from turingarena.sandbox.exceptions import AlgorithmRuntimeError
+from turingarena import *
+
 import random
 import sys
 
 value_range = range(10**8, 10**9)
 
-
-def evaluate(algorithm):
-    goals = {}
-    goals["linear"] = (
-        all(
-            evaluate_case(algorithm, n, time_limit=0.1, also_absent=True)
-            for n in (10, 100, 1000)
-        )
-    )
-    goals["sublinear"] = (
-        goals["linear"]
-        and
-        evaluate_case(algorithm, 1000000, time_limit=0.01, also_absent=True)
-    )
-
-    return {"goals": goals}
+algorithm = submitted_algorithm()
 
 
-def evaluate_case(algorithm, n, time_limit, also_absent):
+def main():
+    linear = True
+
+    for n in (10, 100, 1000):
+        linear &= evaluate_case(n, True, time_limit=0.1)
+        linear &= evaluate_case(n, False, time_limit=0.1)
+
+    sublinear = linear
+    for n in (10000,):
+        sublinear &= evaluate_case(n, True, time_limit=0.0001)
+        sublinear &= evaluate_case(n, False, time_limit=0.0001)
+
+    evaluation_result(goals=dict(
+        linear=linear,
+        sublinear=sublinear,
+    ))
+
+
+def evaluate_case(n, present, time_limit):
     vals = random.choices(value_range, k=n)
+
     val = random.choice(vals)
+    if not present:
+        while val in vals:
+            val = random.choice(value_range)
+
     try:
-        index = run(algorithm, vals, val, time_limit)
-    except AlgorithmRuntimeError as e:
+        with algorithm.run() as process:
+            process.call.store_list(len(vals), vals)
+            with process.section(time_limit=time_limit):
+                index = process.call.find_val(val)
+    except AlgorithmError as e:
         print(n, time_limit, e, file=sys.stderr)
         return False
-    if vals[index] != val:
-        return False;
-    if also_absent:
-        val = vals[0]
-        while val in vals:
-           val = random.choice(value_range)
-        try:
-            index = run(algorithm, vals, val, time_limit)
-        except AlgorithmRuntimeError as e:
-            print(n, time_limit, e, file=sys.stderr)
-            return False
-        if index != -1:
-            return False
-    return True
+        
+    if vals[index] == val:
+        return True
+    if not present and index == -1:
+        return True
+    return False
 
 
-def run(algorithm, vals, val, time_limit):
-    with algorithm.run() as process:
-        process.call.store_list(len(vals), vals)
-        with process.section(time_limit=time_limit):
-            return process.call.find_val(val)
+main()
