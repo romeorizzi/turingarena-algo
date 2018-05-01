@@ -1,14 +1,16 @@
-// evaluation_assert data["goals"]["bi-linear"]
-// evaluation_assert not data["goals"]["mono-linear"]
+// evaluation_assert data["goals"]["bilinear"]
+// evaluation_assert not data["goals"]["monolinear"]
 // evaluation_assert not data["goals"]["sublinear"]
 #include<cassert>
 
-const int MAXM = 5000;
-const int MAXN = 5000;
+const int MAXM = 1000;
+const int MAXN = 1000;
 int M, N;
 int val[MAXM][MAXN];
 
 void get_matrix(int m, int n, int **mat) {
+  assert( M <= MAXM );
+  assert( N <= MAXN );
   M = m; N = n;
   for (int i=0; i<M; i++)
     for (int j=0; j<M; j++)

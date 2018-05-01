@@ -1,5 +1,5 @@
-// evaluation_assert data["goals"]["bi-linear"]
-// evaluation_assert data["goals"]["mono-linear"]
+// evaluation_assert data["goals"]["bilinear"]
+// evaluation_assert data["goals"]["monolinear"]
 // evaluation_assert not data["goals"]["sublinear"]
 #include<cassert>
 

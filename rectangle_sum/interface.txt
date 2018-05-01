@@ -6,11 +6,13 @@ function rectangle_sum(int r1, int r2, int c1, int c2) -> int;
 
 main {
    var int M,N;
-   read M,N;   
+   read M,N;
+
    var int[][] mat;
-   alloc mat:M;   
+
+   alloc mat : M;
    for(i:M) {
-      alloc mat:N;   
+      alloc mat[i] : N;   
       for(j:M) {
          read mat[i][j]; 
       }
