@@ -13,7 +13,7 @@ main {
    alloc mat : M;
    for(i:M) {
       alloc mat[i] : N;   
-      for(j:M) {
+      for(j:N) {
          read mat[i][j]; 
       }
    }   

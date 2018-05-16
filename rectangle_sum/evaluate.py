@@ -13,19 +13,19 @@ def main():
     for size in (10,30,100):
         m = n = size
         bilinear &= evaluate_case(
-            m, n, r1=m//4, r2=3*m//4, c1=n//4, c2=3*n//4, time_limit=0.1)
-        bilinear &= evaluate_case_limits(m, n, time_limit=0.1)
+            m, n, r1=m//4, r2=3*m//4, c1=n//4, c2=3*n//4, time_limit=0.05)
+        bilinear &= evaluate_case_limits(m, n, time_limit=0.05)
 
     monolinear = bilinear
     for size in (10,30,100):
         m = n = size
         monolinear &= evaluate_case(m, n, r1=m//4, r2=3*m//4,
-                                    c1=n//4, c2=3*n//4, time_limit=0.005)
-        monolinear &= evaluate_case_limits(m, n, time_limit=0.005)
+                                    c1=n//4, c2=3*n//4, time_limit=0.0005)
+        monolinear &= evaluate_case_limits(m, n, time_limit=0.0005)
 
     sublinear = monolinear
     sublinear &= evaluate_case(100, 100, r1=10, r2=90,
-                               c1=10, c2=90, time_limit=0.0001)
+                               c1=10, c2=90, time_limit=0.00001)
 
     evaluation_result(goals=dict(
         bilinear=bilinear,
@@ -45,7 +45,7 @@ def evaluate_case(m, n, r1, r2, c1, c2, time_limit):
     except TimeLimitExceeded:
         print ("You take too much time to answer a query.")
         return False
-    except AlgorithmRuntimeError as e:
+    except AlgorithmError as e:
         print("Error:", e)
         return False
 
