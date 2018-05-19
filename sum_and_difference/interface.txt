@@ -1,0 +1,9 @@
+function biggest_of_two_different_naturals_with_given_sum_and_difference(int sum, int dif) -> int;
+
+main {
+    var int sum, dif;
+    read sum, dif;
+    var int answ;
+    call biggest_of_two_different_naturals_with_given_sum_and_difference(sum, dif) -> answ;
+    write answ;
+}
