@@ -1,0 +1,33 @@
+callback a_is_even() -> int {
+    return;
+}
+
+callback b_is_even() -> int {
+    return;
+}
+
+callback halve_a() {
+    return;
+}
+
+callback halve_b() {
+    return;
+}
+
+callback take_sum_and_dif_of_a_and_b_as_new_a_and_b() {
+    return;
+{
+
+function gcd();
+// should guide in computing the greatest common divisor of a and b
+
+main {
+    var int a, b;
+    read a, b;
+// (python "assert( a >= 1)";)
+// (python "assert( b >= 1)";)
+    
+    call gcd();
+// (python "assert(a==b)";)
+    write a;
+}

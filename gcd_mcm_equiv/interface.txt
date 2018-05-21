@@ -1,0 +1,42 @@
+callback oracle_gcd(int a, int b) -> int {
+// in skeleton: assert( a >= 1); assert( b >= 1);
+    assert( a >= 1); assert( b >= 1);
+    write a, b;
+    flush;
+    var int ans;
+    read ans;
+    return ans;
+}
+
+callback oracle_mcm(int a, int b) -> int {
+// the oracle returns the minimum common multiplier of a and b
+// in skeleton: assert( a >= 1); assert( b >= 1);
+    write a, b;
+    flush;
+    var int ans;
+    read ans;
+    return ans;
+}
+
+function mcm(int a, int b) -> int;
+// should return the minimum common multiplier of a and b
+// in template: assert( a >= 1); assert( b >= 1);
+
+function gcd(int a, int b) -> int;
+// should return the greatest common divisor of a and b
+// in template: assert( a >= 1); assert( b >= 1);
+
+main {
+    var int a, b;
+    read a, b;
+// (python "assert( a >= 1)";)
+// (python "assert( b >= 1)";)
+    
+    var int ans;
+    call mcm(a, b) -> ans;
+    write ans;
+
+    var int ans;
+    call gcd(a, b) -> ans;
+    write ans;
+}
