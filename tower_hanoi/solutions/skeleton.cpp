@@ -16,4 +16,6 @@ int main() {
     ans = min_num_moves(n);
     printf("%d\n", 0);
     printf("%d\n", ans);
+    move_tower(n, 1, 3, 2);
+    printf("%d\n", 0);
 }
