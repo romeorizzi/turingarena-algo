@@ -21,5 +21,7 @@ main {
     var int ans;
     call min_num_moves(n) -> ans;
     write ans;
+    flush;
+    read n;
     call move_tower(n, 1, 3, 2);
 }
