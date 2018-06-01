@@ -1,5 +1,5 @@
-function area_of_polytope(int n, int[][] vertex) -> int;
-// returns the area of the 2-dimensional polytope in the plane whose <n> vertices (i.e., extreme points) are orderly (and clockwise) contained in the vector <vertex>
+function area_of_polygon(int n, int[][] vertex) -> int;
+// returns the area of the 2-dimensional polygon in the plane whose <n> vertices (i.e., extreme points) are orderly (and clockwise) contained in the vector <vertex>
 
 main {
    var int N;
@@ -14,6 +14,6 @@ main {
    }   
 
    var int risp;
-   call area_of_polytope(N, vertex) -> risp;
+   call area_of_polygon(N, vertex) -> risp;
    write risp;
 }
