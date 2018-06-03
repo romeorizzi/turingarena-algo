@@ -1,0 +1,19 @@
+function num_moves(int n) -> int;
+// returns the minimum number of moves which suffice in moving a whole Hanoi tower of n disks while visiting each valid configuration precisley once. This is also equal to the number of valid configurations minus one.
+
+callback move_disk(int disk, int from, int to) {
+// moves disk <disk> from peg <from> to peg <to>
+// we assume the disks are numbered from 1 to n, starting from the smallest
+   write disk, from, to;
+   flush;
+}
+
+function tower_hanoi_gray_code(int n, int from, int to, int aux);
+// moves a whole Hanoi tower of <n> disks from peg <from> to peg <to>.
+// It does so through a sequence of moves that visits every valid configuration precisely once.
+
+main {
+    var int n, from, to, aux;
+    read n, from, to, aux;
+    call move_tower(n, from, to, aux);
+}
