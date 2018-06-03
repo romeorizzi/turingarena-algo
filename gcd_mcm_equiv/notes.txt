@@ -1,0 +1,77 @@
+=== The precise definition of the greatest common divisor (gcd) over the special cases ===
+
+Why to opt for the definion of gcd(a,b) in which:
+
+   gcd(0,n) = 0 for all naturals n (including n = 0).
+
+The most debatable choice is gcd(0,0) = 0 since one might object that even 100 divides both 0 and 0, while 100 > 0.
+However, the word "greatest" in "Greatest Common Divisor" does not refer to being largest in the usual ordering of the natural numbers, but to being largest in the partial order of divisibility on the natural numbers (a lattice, thus gcd is well-defined), where we consider a > b only when b subdivides evenly into a equal parts. Most of the time, these two orderings agree whenever the second is defined (that is, for all pairs that are in relation for the second). However, while, under the usual order, 0 is the smallest natural number, under the divisibility order, 0 is the greatest natural number, because every number divides 0 (whereas 0 divides only itself).
+In conclusion, since every natural number is a common divisor of 0 and 0, and 0 is the greatest (in divisibility) of the natural numbers, gcd(0,0)=0.
+More generally, gcd(0,n) = 0 also for all naturals n>0 since 0 is not a divisor of n. 
+
+=== The precise definition of the least common multiple (lcm) over the special cases ===
+
+Notice that lcm(0,n) is not defined when n > 0 since 0 is the only multiple of 0 but it is not a multiple of n. Indeed, if we considered 0 to be a multiple of every number then we would end up with the uninteresting notion of lcm(a,b) = 0 for every a,b.
+However, defining lcm(0,0) = 0  makes full sense. Even if it is natural and handy, whence standard, to define the lcm only over the naturals, there is no contraddiction in assuming:
+
+lcm(0,0) = 0
+
+This is our assumption, to make for a more complete exercise.
+
+=== Euclid's algorithm for computing the gcd(a,b) ===
+
+*** A recursive implementation of Euclid's algorithm *** 
+
+def oracle_gcd(a, b): # returns the greatest common divisor of a and b
+    assert a >= 0 and b >= 0
+    if b == 0:
+        return a;
+    if a >= b:
+        return oracle_gcd(b, a%b)
+    if a == 0:
+        return b;
+    return oracle_gcd(a, b%a)
+
+*** An iterative implementation of Euclid's algorithm *** 
+
+def oracle_gcd(a, b): # returns the greatest common divisor of a and b
+    assert a >= 0 and b >= 0
+    while a != b and a > 0 and b > 0:
+        if a > b:
+            a = a % b
+        else:
+            b = b % a
+    if a > 0:
+        return a
+    else:
+        return b
+
+=== Computing the least common multiple (lcm) via the gcd ===
+
+*** out of the box reduction ***
+
+def oracle_lcm(a, b): # returns the least common multiple of a and b
+    assert (a > 0 and b > 0) or a == b == 0
+    if a==0:
+        return 0
+    return (a*b)/oracle_gcd(a, b)
+
+*** self contained code starting from an iterative gcd computation ***
+                
+def oracle_lcm(a, b): # returns the least common multiplier of a and b
+    # first we compute the gcd iteratively, then we compute the lcm via the gcd
+    assert (a > 0 and b > 0) or a == b == 0
+    if a==0:
+      return 0
+    a_store = a
+    b_store = b
+    while a != b and a > 0 and b > 0:
+        if a > b:
+            a = a % b
+        else:
+            b = b % a
+    if a > 0:
+        gcd = a
+    else:
+        gcd = b
+    return (a_store * b_store) / gcd    

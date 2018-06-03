@@ -25,8 +25,6 @@ int oracle_lcm(int a, int b);
 
 int gcd(int a, int b) {
   assert( (a >= 0) && (b >= 0) );  // this line should be already there in the template
-  if(a==0)
-    return b;
   if(b==0)
     return a;
   return (a*b)/oracle_lcm(a, b);
