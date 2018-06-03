@@ -5,6 +5,7 @@ function min_num_moves(int n) -> int;
 callback move_disk(int disk, int from, int to) {
 // moves disk <disk> from peg <from> to peg <to>
 // we assume the disks are numbered from 1 to n, starting from the smallest
+
    write disk, from, to;
    flush;
 }
@@ -20,8 +21,4 @@ main {
     var int ans;
     call min_num_moves(n) -> ans;
     write ans;
-    flush;
-    var int n2, from, to, aux;
-    read n2, from, to, aux;
-    call move_tower(n2, from, to, aux);
 }
