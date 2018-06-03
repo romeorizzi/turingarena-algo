@@ -52,7 +52,7 @@ for N in range(MAXN+1):
             rod[disk] = peg_to
             done_moves += 1
 
-        process.call.tower_hanoi_gray_code(N, 1, 3, 2, move_disk=move_disk)
+        process.call.move_tower_hanoi_in_gray_code(N, 1, 3, 2, move_disk=move_disk)
         if wrong_move:
             goals["correct_list_of_moves_with_pegs"] = False
             goals["optimal_list_of_moves_without_pegs"] = False
