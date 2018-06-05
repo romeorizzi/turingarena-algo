@@ -24,19 +24,7 @@ void move_tower(int n, int from, int to, int aux) {
   move_tower(n-1, from, to, aux);
 }
 
-void visit_all_configs(int n, int from = 1, int to = 3, int aux = 2) {
+void visit_all_configs(int n) {
   // starting form the valid configuration in which all <n> disks are orderly placed on rod 1, and moving one disk at the time, it makes the tower visit each valid configuration precisely once.
-
-  //void move_tower(int n, int from, int to, int aux) {
-// moves a whole Hanoi tower of <n> disks from peg <peg_from> to peg <peg_to>.
-// It does so through a sequence of moves that visits every valid configuration precisely once.
-  assert( n >= 0 );
-  if( n==0 ) return;
-  visit_all_configs(n-1, from, to, aux);
-  move_disk(n, from, aux);
-  visit_all_configs(n-1, to, from, aux);
-  move_disk(n, aux, to);
-  visit_all_configs(n-1, from, to, aux);
-  //}
-
+  move_tower(n, 1, 3, 2);
 }

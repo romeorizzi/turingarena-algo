@@ -18,7 +18,7 @@ main {
     call num_valid_configurations(n) -> ans;
     write ans;
     flush;
-    var int n2, peg_from, peg_to, peg_aux;
-    read n2, peg_from, peg_to, peg_aux;
-    call move_tower(n2, peg_from, peg_to, peg_aux);
+    var int n2;
+    read n2;
+    call visit_all_configs(n2);
 }
