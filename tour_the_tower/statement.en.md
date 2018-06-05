@@ -1,6 +1,12 @@
 A question: in the tower of Hanoi puzzle, does there exists a sequence of moves which allows to visit each valid configuration precisely once? (A configuration is a placement of the $n$ disks on the three pegs; it is valid when no disk is placed on top of a smaller one.)
 In this problem you are asked to compute the number of valid configurations and to settle the above question with an algorithm yielding a solution for every possible $n$.
-If the question is clear to you, produce the template file for your choosen language: you can directy start from there.
+
+Goal 1 [num_valid_configs]: compute the number of valid configurations.
+Goal 2 [walk]: starting from the valid configuration in which all $n$ disks are orderly placed on pole 1, perform a sequence of moves which visits all configurations. If yuor sequence is too long your process will be stopped.
+Goal 3 [tour]: as in Goal 2, but visit every valid configuration precisely one.
+
+
+If these goals are clear to you, produce the template file for your choosen language: you can directy start from there.
 Keep on reading here otherwise, if the question remains rather obscure to you.
 In case you don't know the tower of Hanoi classic puzzle, we suggest you to first approach that famous problem, you can find the classic version plus some variants among the problems of TuringArena. In any case, we provide the necessary background and some links here below.
 

@@ -2,13 +2,14 @@ from turingarena import *
 
 algorithm = submitted_algorithm()
 
-MAXN = 5
-
-
 goals = {
     "correct_num_configs": True,
-    "correct_move_tower": True,
+    "correct_walk_tower": True,
+    "correct_tour_tower": True,
 }
+
+MAXN = 8
+
 for N in range(MAXN+1):
     def correct_num_valid_configurations(N):
         assert N >= 0
@@ -18,6 +19,7 @@ for N in range(MAXN+1):
     rod = [1 for _ in range(N+1)] # stores a config: rod[disk] tells the peg on which disk is currently sitting. Disks are numbered from 1 to n.
     visited_conf = set()
     visited_conf.add(tuple(rod[1:(N+1)]))
+    no_one_twice = True
     with algorithm.run() as process:
         # first, the minimum number of moves to move an N disks tower:
         risp = process.call.num_valid_configurations(N)
@@ -44,18 +46,22 @@ for N in range(MAXN+1):
                 exit()        
             rod[disk] = peg_to
             if tuple(rod[1:(N+1)]) in visited_conf:
-                wrong_move = True
+                goals["correct_tour_tower"] = False
                 print("Configuration visited twice: {tuple(rod[1:(N+1)])}")
-                exit()
-                
-            visited_conf.add(tuple(rod[1:(N+1)]))    
+                no_one_twice = False
+            else:    
+                visited_conf.add(tuple(rod[1:(N+1)]))    
 
         process.call.visit_all_configs(N, move_disk=move_disk)
         if wrong_move:
-            goals["correct_move_tower"] = False
+            goals["correct_tour_tower"] = goals["correct_walk_tower"] = False
         elif len(visited_conf) < correct_num_valid_configurations(N):
-            goals["correct_move_tower"] = False
+            goals["correct_tour_tower"] = goals["correct_walk_tower"] = False
             print(f"Visited only {len(visited_conf)} configurations (done only {len(visited_conf)-1} moves). You are required to give a solution which visits each configuration precisely once!")
         else:
-            print("Correct! You visited all configurations precisely once")
+            if(no_one_twice):
+                print("Correct! You visited all configurations precisely once")
+            else:
+                print("You achieved the partial goal to visit all configurations, though you visited some of them more than once")
+
 evaluation_result(goals=goals)

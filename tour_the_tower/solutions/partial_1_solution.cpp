@@ -1,5 +1,6 @@
 // evaluation_assert data["goals"]["correct_num_configs"]
-// evaluation_assert not data["goals"]["correct_move_tower"]
+// evaluation_assert not data["goals"]["correct_walk_tower"]
+// evaluation_assert not data["goals"]["correct_tour_tower"]
 
 
 #include<cassert>

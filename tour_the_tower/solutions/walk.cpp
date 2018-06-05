@@ -1,34 +1,30 @@
 // evaluation_assert data["goals"]["correct_num_configs"]
 // evaluation_assert data["goals"]["correct_walk_tower"]
-// evaluation_assert data["goals"]["correct_tour_tower"]
+// evaluation_assert not data["goals"]["correct_tour_tower"]
 
 
 #include<cassert>
 
-int min_num_valid_configurations(int n) {
+int num_valid_configurations(int n) {
   assert( n >= 0 );
   if( n==0 ) return 1;
-  return 3*min_num_valid_configurations(n-1);
+  return 3*num_valid_configurations(n-1);
 }
 
 void move_disk(int disk, int from, int to);
 
 void move_tower(int n, int from, int to, int aux) {
+// moves a whole Hanoi tower of <n> disks from peg <peg_from> to peg <peg_to>.
+// It does so through a sequence of moves that visits every valid configuration precisely once.
   assert( n >= 0 );
-  int num_valid_configurations = min_num_valid_configurations(n);
-  for(int i = 1; i <= num_valid_configurations; i++) {
-    int disk_to_be_moved = i & -i;
-    switch (i%3) {
-    case 1: move_disk(disk_to_be_moved, from, to);
-      break;
-
-    case 2: move_disk(disk_to_be_moved, from, aux);
-      break;
-
-    case 0: move_disk(disk_to_be_moved, aux, to);
-      break;
-    }
-  }  
+  if( n==0 ) return;
+  move_disk(1, from, to);
+  move_disk(1, to, from);
+  move_tower(n-1, from, to, aux);
+  move_disk(n, from, aux);
+  move_tower(n-1, to, from, aux);
+  move_disk(n, aux, to);
+  move_tower(n-1, from, to, aux);
 }
 
 void visit_all_configs(int n) {
