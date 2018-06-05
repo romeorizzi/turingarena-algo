@@ -1,0 +1,27 @@
+callback check(int pos_p, int pos_t) -> int {
+    write pos_p, pos_t;
+    flush;
+    var int ans;
+    read ans;
+    return ans;
+}
+
+callback underline(int pos_t) {
+    write pos_t;
+    flush;
+}
+
+function subsequence(int len_p, int len_t) -> int;
+// vorrei arrivasse a studente nel template:
+// will eat up a pattern sequence of length np and a text sequence of length nt.
+// Must find out whether the pattern is a subsequence of the text.
+// If no, it returns 0.
+// If yes (return value 1), it will also have specified the elements of the text that have been selected.
+
+main {
+    var int len_p, len_t;
+    read len_p, len_t;
+    var int ans;
+    call subsequence(len_t, len_p) -> ans;
+    write ans;
+}
