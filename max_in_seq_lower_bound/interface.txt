@@ -1,0 +1,37 @@
+//The purpouse of this exercise is to formally prove that we can not tell the maximum of $n-2$ elements based on less than $n-1$ comparisons. We constructively prove this in a very strong form: given any set of $n-2$ comparisons we can either certify they are inconsistent by providing a directed cycle or certify they do not allow to tell the maximum by constructing two topological sorts compatible with all given comparisons but differing on which element they place last.
+
+function process_comparisons(int n, int[] a, int[] b);
+// when process_comparisons gets called, it is given the size n of the universe. It is assumed that the elements of the universe ara laballed with the naturals from 1 to n. Function process_comparisons also reives the comparisons, encoded by the n-2 ordered pairs of labels (a[i], b[i]), for i in [0,n-2). Each such pair specifies that the element with label a[i] is smaller than the element with label b[i].
+// In case the comparisons hold a contraddiction, that is, when no total oder exists compatible with them all, then the function must return evidence of the contraddiction in the form of a directed cycle.
+// Otherwise, it returns two total orders, both compatible with all the comparisons, but differing on the element they place last. These provide evidence that the n-2 comparisons never suffice in telling the maximum element, however they happen to be.
+
+callback cycle(int v) {
+// In case the assigned $n-2$ comparisons bear a contraddiction, the prover designed by the problem solver can exhibit a directed cycle within these comparisons.
+  write v;
+}
+
+callback first_topological_sort(int v) {
+// In case the assigned $n-2$ comparisons bear no contraddiction, the prover must provide two topological sorts compatible with the assigned comparisons and in disagreement on the identity of the last (possible max) node. The prover, that is, the solution coded by the problem solver, calls this function to list, one by one, the nodes according to the first topologic sort.
+  write v;
+}
+
+callback second_topological_sort(int v) {
+// The prover calls this function to list, one by one, the nodes according to the second topologic sort.
+  write v;
+}
+
+main {
+    var int n;
+    var int[] a;
+    var int[] b;
+
+    read n;
+    alloc a : n;
+    alloc b : n;
+    for(i : n) {
+        read a[i];
+        read b[i];
+    }
+
+    call process_comparisons(n, a, b);
+}
