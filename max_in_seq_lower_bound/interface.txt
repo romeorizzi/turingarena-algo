@@ -7,6 +7,7 @@ function process_comparisons(int n, int[] a, int[] b);
 
 callback cycle(int v) {
 // In case the assigned $n-2$ comparisons bear a contraddiction, the prover designed by the problem solver can exhibit a directed cycle within these comparisons.
+// When you return a cycle node by node by means of this function then the first and the last node should be the same in order to close it up.
   write v;
 }
 

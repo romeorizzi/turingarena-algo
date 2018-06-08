@@ -13,7 +13,8 @@ goals = {
 def eval(N, a, b):
     cyc = []
     top_sort_1 = []
-    top_sort_2 = []    
+    top_sort_2 = []
+    cycle_delivered = False
     def cycle(v):
         cyc.add(v)
         if cyc[0] == cyc[-1]:
@@ -26,6 +27,7 @@ def eval(N, a, b):
                     goals["correct_always"] = False 
             if cyc_good:
                 print(f"Found cycle: {cyc} CORRECT")
+                cycle_delivered = True
 
     def inv(perm):
         inverse = [0] * len(perm)
@@ -69,20 +71,24 @@ def eval(N, a, b):
             
     with algorithm.run() as process:
         # first, the minimum number of moves to move an N disks tower:
-        risp = process.call.process_comparisons(N, a, b, cycle=cycle, first_topological_sort=first_topological_sort, second_topological_sort=second_topological_sort)
-        if len(top_sort_1) > 0 or len(top_sort_2) > 0:
-            if len(cyc) > 0:
-                print("You can not call both cycle and first_topological_sort or second_topological_sort")         
-                goals["correct_always"] = False 
-            if len(top_sort_1) != N or len(top_sort_2) != N:
-                print("When you return topological sorts, both of them must list precisely n elements.")         
-                goals["correct_always"] = False 
-            elif not is_perm(top_sort_1) or not is_perm(top_sort_2):
-                print("When you return topological sorts, they must be orderings of the labels in 1...N.")         
-                goals["correct_always"] = False 
-            elif top_sort_1[N] == top_sort_2[N]:
-                print("The two topological sorts you deliver must differ on the last element.")         
-                goals["correct_always"] = False 
+        process.call.process_comparisons(N, a, b, cycle=cycle, first_topological_sort=first_topological_sort, second_topological_sort=second_topological_sort)
+    if cycle_delivered:
+        return
+    if len(top_sort_1) * len(top_sort_2) == 0:
+        goals["correct_always"] = False
+        if len(cyc) == 0:
+            print("You delivered neither a cycle nor two topological sorts. WRONG")                     
+        else:
+            print("You did not deliver two topological sorts and your cycle was never completed. (Remember that the first and last node should be the same!). WRONG")                     
+    elif len(top_sort_1) != N or len(top_sort_2) != N:
+        print("When you return topological sorts, both of them must list precisely n elements.")         
+        goals["correct_always"] = False 
+    elif not is_perm(top_sort_1) or not is_perm(top_sort_2):
+        print("When you return topological sorts, they must be orderings of the labels in 1...N.")         
+        goals["correct_always"] = False 
+    elif top_sort_1[N] == top_sort_2[N]:
+        print("The two topological sorts you deliver must differ on the last element.")         
+        goals["correct_always"] = False 
 
 for N in [4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 50, 100]:
     a = [random.randint(1,N+1)] *(N-2)

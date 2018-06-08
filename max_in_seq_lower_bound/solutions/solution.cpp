@@ -20,6 +20,7 @@ int open[MAXN +1], close[MAXN +1], t = 0;
 
 int node_in_pos[MAXN +1], posW; // this posW gets initialized to n
 int stack_cycle[MAXN +1], pos_c = 0;
+bool output_delivered = false;
 
 void dfs(int v) {
   if(open[v]) {
@@ -33,12 +34,14 @@ void dfs(int v) {
   open[v] = ++t;
   for(int head : out_neighbors_of[v] ) {
     dfs(head);
+    if(output_delivered) // cycle found and already delivered
+      return;
     if(pos_c > 0) { // cycle found, rewinding up the recursion
       stack_cycle[pos_c++] = v;
       if(v == stack_cycle[0]) {
 	while(pos_c > 0)
 	  cycle(stack_cycle[--pos_c]);
-	std::exit(EXIT_SUCCESS);
+	output_delivered = true;
       } 
     }
   }  
@@ -58,20 +61,24 @@ void process_comparisons(int n, int* a, int* b) {
   for(int v = 1; v <= n; v++)
     out_neighbors_of[0].push_back(v); // node 0 is made the universal source
   out_degree[0] = n;
+
   dfs(0);
+
+  if(output_delivered)
+    return;
 
   // If we got here, then dfs has found no cycle.
   // Indeed, the graph is acyclic as certified by the topological sort
   // encoded in vector node_in_pos[MAXN+1]
 
   assert( node_in_pos[0] == 0 ); // node 0 is the universal source
-  for(int pos = 1; pos <= n; pos++) // just skip the dummy node 0
-    first_topological_sort(node_in_pos[pos]);
   int first_sink = 0; // node 0 cannot be a sink
-  for(int pos = 1; pos <= n; pos++)
+  for(int pos = 1; pos <= n; pos++) { // just skip the dummy node 0
+    first_topological_sort(node_in_pos[pos]);
     if(first_sink == 0 && out_degree[node_in_pos[pos]] == 0)
-      first_sink = node_in_pos[pos];
+	first_sink = node_in_pos[pos];
     else
-      second_topological_sort(node_in_pos[pos]);
+	second_topological_sort(node_in_pos[pos]);
+  }  
   second_topological_sort(first_sink);
 }
