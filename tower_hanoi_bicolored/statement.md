@@ -1,2 +1,3 @@
-https://www.cut-the-knot.org/recurrence/BiColorHanoi.shtml
-https://www.cut-the-knot.org/recurrence/BicolorHanoiSolution.shtml
+The Bicolor Tower of Hanoi problem is a variation of the traditional Tower of Hanoi problem. Suppose there are three pegs: FROM, TO and AUX. Suppose there are two sets of disks with decreasing size, one black and one white. Each set consists of n elements. Suppose n disks with alternating colors are placed on pegs FROM and TO, with decreasing size from bottom to top. AUX is an auxillary peg. The goal of the problem is to make the Tower of pegs FROM and TO monochrome, The biggest disks at the bottom of the peg are required to swipe positions. The rules of the puzzle are essentially the same of the traditional Tower of Hanoi problem: only one disk can be moved at any time. A a larger disk can never be placed on top of a smaller one. 
+The following figures show the initial and final configurations of the Bicolor Tower of Hanoi.
+
