@@ -1,0 +1,18 @@
+function min_num_moves(int n, int from, int to, int aux) -> int;
+
+function bicolorProblem(int n, int from, int to, int aux);
+
+callback move_disk(int disk, int from, int to) {
+// moves disk <disk> from peg <from> to peg <to>
+// we assume the disks are numbered from 1 to n, starting from the smallest
+   write disk, from, to;
+}
+
+main {
+	var int n, ans;   
+	var int from, to, aux;
+	read n, from, to, aux;
+    	call min_num_moves(n, from, to, aux) -> ans;
+    	call bicolorProblem(n, from, to, aux);
+    	write ans;
+}
