@@ -1,0 +1,14 @@
+procedure input_tree(n, tree[]);
+function father_of(child);
+
+main{
+    read n;
+    for i to n{
+        read tree[i];
+    }
+    call input_tree(n, tree);
+    for i to n{
+        call ans = father_of(i);
+        write ans;
+    }
+}
