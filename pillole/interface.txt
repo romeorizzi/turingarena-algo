@@ -1,0 +1,13 @@
+function num_modi(n);
+
+procedure elenca_modi(n) callbacks {
+    procedure pescato_intera();
+    procedure pescato_mezza();
+}
+
+main {
+    read n;
+    call res = num_modi(n);
+    write res;
+    call elenca_modi(n);
+}
