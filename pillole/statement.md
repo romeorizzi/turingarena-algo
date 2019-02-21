@@ -26,7 +26,7 @@ L'implementazione è considerata corretta se risponde correttamente per ogni num
 
 Goal 2: offri un'implementazione corretta della procedura elenca_modi() che, dato N, elenca uno
 ad uno tutti gli num_modi(N) modi possibili. Per comunicare un dato modo al programma valutatore,
-la funzione utilizza N chiamate alla primitiva pescatoMezza() ed N chiamate alla primitiva pescatoIntera(), nel giusto ordine.
+la funzione utilizza N chiamate alla primitiva pescatoMezza() ed N chiamate alla primitiva pescatoIntera(), nel giusto ordine, ed infine una chiamata alla callback done().
 
 Ad esempio, per comunicare il modo IIMMIM, la procedura elenca_modi(3) dovrebbe effettuare la seguente sequenza di chiamate:
 
@@ -36,6 +36,7 @@ pescatoMezza()
 pescatoIntera()
 pescatoMezza()
 pescatoMezza()
+done()
 
 Goal 3: offri un'implementazione corretta ed efficiente della funzione num_modi(N). In pratica,
 il tuo codice dovrà rispondere entro una frazione di secondo per ogni N <= 30.

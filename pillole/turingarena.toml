@@ -1,0 +1,6 @@
+[scoring]
+goals = [
+    "correct_num_modi",
+    "correct_elenca_modi",
+    "correct_num_modi_big",
+]
