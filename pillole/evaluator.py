@@ -5,7 +5,7 @@ import turingarena as ta
 from solutions.solution import num_modi
 
 @lru_cache(None)
-def test_case(n, elenca=True):
+def test_case(n, elenca):
     try:
         with ta.run_algorithm(ta.submission.source) as p:
             print(f"Testing case n={n}...")
@@ -17,37 +17,39 @@ def test_case(n, elenca=True):
                 return False, False 
             
             print(f"Ok num modi")
-            if not elenca:
-                return True, None
-
-            modi = set()
-            L = []
-
-            def pescato_intera():
-                L.append("I")
-            
-            def pescato_mezza():
-                L.append("M")
-
-            def done():
-                nonlocal L
-                m = L.count("M")
-                l = L.count("I")
-                s = "".join(L)
-                if m != n or l != n:
-                    print(f"Il modo scelto {s} non è un modo valido!")
-                    p.stop()
-                if s in modi:
-                    print(f"Il modo scelto {s} è già stato fornito!")
-                    p.stop()
-                modi.add(s)
+            if elenca:
+                modi = set()
                 L = []
+
+                def pescato_intera():
+                    L.append("I")
                 
-            p.procedures.elenca_modi(n, callbacks=[pescato_intera, pescato_mezza, done])
-    except ta.AlgorithmRuntimeError as e:
+                def pescato_mezza():
+                    L.append("M")
+
+                def done():
+                    nonlocal L
+                    m = L.count("M")
+                    l = L.count("I")
+                    s = "".join(L)
+                    if m != n or l != n:
+                        print(f"Il modo scelto {s} non è un modo valido!")
+                        p.stop()
+                    if s in modi:
+                        print(f"Il modo scelto {s} è già stato fornito!")
+                        p.stop()
+                    modi.add(s)
+                    L = []
+                
+                p.procedures.elenca_modi(n, callbacks=[pescato_intera, pescato_mezza, done])
+    except Exception as e:
         if "timeout expired" in str(e):
             print("Timelimit expired")
             return False, False
+        return False, False
+
+    if not elenca:
+        return True, None
 
     if len(modi) != actual_res:
         print(f"Hai detto che esistevano {actual_res} modi diversi, ma ne hai forniti soltanto {len(modi)}!")
@@ -57,24 +59,24 @@ def test_case(n, elenca=True):
     return True, True
 
 
-ta.goals.check("correct_num_modi", lambda: test_case(1)[0])
-ta.goals.check("correct_num_modi", lambda: test_case(2)[0])
-ta.goals.check("correct_num_modi", lambda: test_case(3)[0])
-ta.goals.check("correct_num_modi", lambda: test_case(4)[0])
-ta.goals.check("correct_num_modi", lambda: test_case(5)[0])
-ta.goals.check("correct_num_modi", lambda: test_case(8)[0])
-ta.goals.check("correct_num_modi", lambda: test_case(10, elenca=False)[0])
+ta.goals.check("correct_num_modi", lambda: test_case(1, True)[0])
+ta.goals.check("correct_num_modi", lambda: test_case(2, True)[0])
+ta.goals.check("correct_num_modi", lambda: test_case(3, True)[0])
+ta.goals.check("correct_num_modi", lambda: test_case(4, True)[0])
+ta.goals.check("correct_num_modi", lambda: test_case(5, True)[0])
+ta.goals.check("correct_num_modi", lambda: test_case(8, True)[0])
+ta.goals.check("correct_num_modi", lambda: test_case(10, False)[0])
 ta.goals.setdefault("correct_num_modi", True)
-ta.goals.check("correct_elenca_modi", lambda: test_case(1)[1])
-ta.goals.check("correct_elenca_modi", lambda: test_case(2)[1])
-ta.goals.check("correct_elenca_modi", lambda: test_case(3)[1])
-ta.goals.check("correct_elenca_modi", lambda: test_case(4)[1])
-ta.goals.check("correct_elenca_modi", lambda: test_case(5)[1])
-ta.goals.check("correct_elenca_modi", lambda: test_case(8)[1])
+ta.goals.check("correct_elenca_modi", lambda: test_case(1, True)[1])
+ta.goals.check("correct_elenca_modi", lambda: test_case(2, True)[1])
+ta.goals.check("correct_elenca_modi", lambda: test_case(3, True)[1])
+ta.goals.check("correct_elenca_modi", lambda: test_case(4, True)[1])
+ta.goals.check("correct_elenca_modi", lambda: test_case(5, True)[1])
+ta.goals.check("correct_elenca_modi", lambda: test_case(8, True)[1])
 ta.goals.setdefault("correct_elenca_modi", True)
-ta.goals.check("correct_num_modi_big", lambda: test_case(15, elenca=False)[0])
-ta.goals.check("correct_num_modi_big", lambda: test_case(20, elenca=False)[0])
-ta.goals.check("correct_num_modi_big", lambda: test_case(25, elenca=False)[0])
-ta.goals.check("correct_num_modi_big", lambda: test_case(30, elenca=False)[0])
+ta.goals.check("correct_num_modi_big", lambda: test_case(15, False)[0])
+ta.goals.check("correct_num_modi_big", lambda: test_case(20, False)[0])
+ta.goals.check("correct_num_modi_big", lambda: test_case(25, False)[0])
+ta.goals.check("correct_num_modi_big", lambda: test_case(30, False)[0])
 ta.goals.setdefault("correct_num_modi_big", True)
 print(ta.goals)
