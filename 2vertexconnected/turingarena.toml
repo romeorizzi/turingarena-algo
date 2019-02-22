@@ -1,0 +1,2 @@
+[scoring]
+goals=["cutnodes_linear","cutnodes_mn","cutnodes_m2","components_linear","components_mn","components_m2"]

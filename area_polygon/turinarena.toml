@@ -1,0 +1,4 @@
+[scoring]goals=["collinearity_check","triangles","convex_polygons","all_polygons"][scoring]
+goals=["collinearity_check","triangles","convex_polygons","all_polygons"]
+
+

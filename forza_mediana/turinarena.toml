@@ -1,0 +1,4 @@
+[scoring]
+goals=["square","nlogn","linear"]
+
+

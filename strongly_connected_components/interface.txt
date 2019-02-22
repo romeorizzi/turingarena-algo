@@ -1,0 +1,22 @@
+procedure scc(N, Dout[], Aout[][], Din[], Ain[][]) callbacks {
+    procedure start_component();
+    procedure add_node(n);
+}
+
+main {
+    read N;
+    
+    for u to N {
+        read Dout[u], Din[u];
+        
+        for v to Dout[u] {
+            read Aout[u][v];
+        }
+
+        for v to Din[u] {
+            read Ain[u][v];
+        }
+    }
+
+    call scc(N, Dout, Aout, Din, Ain);
+}

@@ -1,0 +1,2 @@
+[scoring]
+goals=["bridges_linear","bridges_mn","bridges_m2","components_linear","components_mn","components_m2"]

@@ -1,0 +1,20 @@
+procedure build(n, d[], a[][]) callbacks {
+    procedure add_bridge(u, v);
+    procedure start_component();
+    procedure add_node(u);
+}
+
+main {
+    read n;
+    for u to n {
+        read d[u];
+    }
+
+    for u to n {
+        for i to d[u] {
+            read a[u][i];
+        }
+    }
+
+    call build(n, d, a);
+}

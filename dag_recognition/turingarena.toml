@@ -1,0 +1,6 @@
+[scoring]
+goals = [
+    "ok_top_order",
+    "ok_cycle_find",
+    "ok_detection",
+]

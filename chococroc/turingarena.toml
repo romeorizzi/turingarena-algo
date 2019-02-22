@@ -1,0 +1,10 @@
+[parameters]
+timelimit = 0.007
+debug = false
+
+
+[scoring]
+
+goals = ["win_from_1e1", "move_1e1",
+         "win_from_1e3", "move_1e3",
+         "win_from_1e9", "move_1e9"]

@@ -1,0 +1,43 @@
+function is_dag(N, Din[], Ain[][], Dout[], Aout[][]);
+
+function get_cycle_length();
+function get_cycle_node(i);
+
+procedure build_order();
+function get_order_node(i);
+
+main {
+    read N;
+    for i to N {
+        read Din[i];
+        for j to Din[i] {
+            read Ain[i][j];
+        }
+        read Dout[i];
+        for j to Dout[i] {
+            read Aout[i][j];
+        }
+    }
+
+    call dag = is_dag(N, Din, Ain, Dout, Aout);
+    write dag;
+
+    if dag {
+        call build_order();
+        for i to N {
+            call res1[i] = get_order_node(i);
+        }
+        for i to N {
+            write res1[i];
+        }
+    } else {
+        call len = get_cycle_length();
+        write len;
+        for i to len {
+            call res2[i] = get_cycle_node(i);
+        }
+        for i to len {
+            write res2[i];
+        }
+    }
+}

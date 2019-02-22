@@ -1,0 +1,20 @@
+function num_mosse(n); 
+
+function mossa(n);
+
+main {
+    read which;
+    switch which {
+        case 0 {
+            read n;
+            call res1 = num_mosse(n);
+            write res1;
+	}    
+        case 1 {
+            read n;
+	    call res2 = mossa(n);
+            write res2;
+	}
+    }
+}    
+

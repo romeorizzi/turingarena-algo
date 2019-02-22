@@ -1,0 +1,30 @@
+function store_the_numbers(int n, int[] val);
+// Array val is a list of n numbers with no repetition. This function will get called once, at the very start. Within this function you have your best opportunity to organize your data, i.e., these numbers (but use no more than O(n) memory, that is, linear memory in the amount of numbers here assigned to your management), to prepare to efficiently answer the queries you will later receive on these numbers. 
+
+function list_the_pairs_of_numbers_with_sum(int SUM);
+// This is the query function you must serve/implement. From within this function your service is to answer each query as fast as possible. Obtained the value of SUM, you are expected to list all pairs of numbers (among those numbers assigned to you by the function store_the_numbers) which sum up to SUM. For each such pair (small, big), with small < big and in increasing value of small, you must deliver it through a call to the callback function deliver_pair. 
+
+callback deliver_pair(int small, int big) {
+// call it from within your list_the_pairs_of_numbers_with_sum(SUM) function in order to deliver a pair of numbers (small, big), with small < big, small+big = SUM, where, of course, small and big both occurred within val, the list of numbers assigned to you by function store_the_numbers.
+   write small, big;
+   flush;
+}
+
+main {
+   var int N;
+   read N;
+   var int[] vec;
+   alloc vec:N;   
+   for(i:N) {
+      read vec[i]; 
+   }   
+   call store_the_numbers(N, vec);
+   
+   var int SUM;
+   read SUM;
+
+   checkpoint;
+   flush;
+
+   call list_the_pairs_of_numbers_with_sum(SUM);
+}

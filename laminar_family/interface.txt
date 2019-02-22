@@ -1,0 +1,23 @@
+function is_laminar_family(n,m,card[],set_elem[][]) callbacks {
+    procedure give_bad_pair_of_sets(s1, s2);
+    procedure open_root_node(s);
+    procedure open_child_node(s);
+    procedure give_leaf_node(elem);
+    procedure close_node();
+}
+
+main {
+    read n, m;
+    for s to m {
+        read card[s];
+    }
+
+    for s to m {
+        for i to card[s] {
+            read set_elem[s][i];
+        }
+    }
+
+    call res = is_laminar_family(n,m,card,set_elem);
+    write res;
+}

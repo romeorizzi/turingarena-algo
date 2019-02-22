@@ -1,0 +1,11 @@
+callback prova(int c1, int c2) {
+    write c1, c2;
+    flush;
+    read c1, c1;
+}
+
+function play();
+
+main {
+    call play();
+}

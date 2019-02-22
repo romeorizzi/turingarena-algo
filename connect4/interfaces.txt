@@ -1,0 +1,20 @@
+int move(card_in_my_hand[], card_on_the_table[]);
+// With 2 players we have a perfect-information game from the very beginning.
+// As a consequence, it makes sense to play best moves in isolation since the history of the game is not relevant.
+
+
+init {
+}
+
+main {
+    var int card_in_my_hand[]; //boolean
+    var int card_on_the_table[]; //boolean
+    alloc card_in_my_hand:52;
+    alloc card_on_the_table:52;
+    for(i:N) {
+       read card_in_my_hand[i]; 
+       read card_on_the_table[i]; 
+    }
+    
+    call move(card_in_my_hand, card_on_the_tabl);
+}
