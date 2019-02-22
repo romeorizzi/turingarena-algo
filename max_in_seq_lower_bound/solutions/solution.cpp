@@ -1,7 +1,3 @@
-// evaluation_assert data["goals"]["correct_when_cycles"]
-// evaluation_assert data["goals"]["correct_when_no_cycle"]
-// evaluation_assert data["goals"]["correct_always"]
-
 #include<cassert>
 #include<cstdlib>
 #include<vector>

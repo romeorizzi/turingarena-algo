@@ -1,0 +1,2 @@
+[scoring]
+goals=["lcm2gcd_legal","gcd2lcm_legal","lcm2gcd_correct_always","gcd2lcm_correct_for_positive_a_and_b","gcd2lcm_correct_always"]

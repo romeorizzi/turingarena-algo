@@ -1,0 +1,3 @@
+[scoring]
+goals=["optimal_num_moves","optimal_list_of_moves_without_pegs","optimal_list_of_moves_with_pegs","correct_list_of_moves_with_pegs"]
+

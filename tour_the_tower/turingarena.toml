@@ -1,0 +1,3 @@
+[scoring]
+goals=["correct_num_configs","correct_walk_tower","correct_tour_tower"]
+

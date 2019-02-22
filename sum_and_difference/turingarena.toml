@@ -1,0 +1,3 @@
+[scoring]
+goals=["correct","correct-when-integral","correct-when-different","correct-when-non-negative","correct-when-difference-non-negative","correct_when_solution_exists"]
+

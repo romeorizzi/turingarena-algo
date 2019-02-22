@@ -1,7 +1,3 @@
-// evaluation_assert data["goals"]["correct_yes_no"]
-// evaluation_assert data["goals"]["correct_with_certificate"]
-// evaluation_assert not data["goals"]["single_check_per_text_element"]
-
 int check(int pos_p, int pos_t);
 void underline(int pos_p);
 

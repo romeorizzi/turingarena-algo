@@ -1,13 +1,6 @@
-// evaluation_assert data["goals"]["optimal_num_moves"]
-// evaluation_assert data["goals"]["optimal_list_of_moves_without_pegs"]
-// evaluation_assert data["goals"]["optimal_list_of_moves_with_pegs"]
-// evaluation_assert data["goals"]["correct_list_of_moves_with_pegs"]
-
-
 #include <cstdio>
 #include <cassert>
 #include <cmath>
-
 
 
 void move_tower(int n, int from, int to, int aux);

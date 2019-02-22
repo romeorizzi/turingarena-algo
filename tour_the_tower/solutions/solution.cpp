@@ -1,8 +1,3 @@
-// evaluation_assert data["goals"]["correct_num_configs"]
-// evaluation_assert data["goals"]["correct_walk_tower"]
-// evaluation_assert data["goals"]["correct_tour_tower"]
-
-
 #include<cassert>
 
 int num_valid_configurations(int n) {

@@ -1,9 +1,3 @@
-// evaluation_assert data["goals"]["optimal_num_moves"]
-// evaluation_assert data["goals"]["optimal_list_of_moves_without_pegs"]
-// evaluation_assert not data["goals"]["optimal_list_of_moves_with_pegs"]
-// evaluation_assert not data["goals"]["correct_list_of_moves_with_pegs"]
-
-
 #include<cassert>
 
 int min_num_moves(int n) {

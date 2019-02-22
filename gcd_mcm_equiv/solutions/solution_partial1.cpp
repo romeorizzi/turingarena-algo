@@ -1,9 +1,3 @@
-// evaluation_assert data["goals"]["lcm2gcd_legal"]
-// evaluation_assert data["goals"]["gcd2lcm_legal"]
-// evaluation_assert data["goals"]["lcm2gcd_correct_always"]
-// evaluation_assert data["goals"]["gcd2lcm_correct_for_positive_a_and_b"]
-// evaluation_assert not data["goals"]["gcd2lcm_correct_always"]
-
 #include<cassert>  // this line should be already there in the template
 
 // Reducing the problem lcm to the problem gcd:  // would be good if we could prescribe the presence of comments like this one in the template (regardless from the target language)

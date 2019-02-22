@@ -1,8 +1,3 @@
-# evaluation_assert data["goals"]["correct_num_configs"]
-# evaluation_assert data["goals"]["correct_walk_tower"]
-# evaluation_assert data["goals"]["correct_tour_tower"]
-
-
 #include<cassert>
 
 def num_valid_configurations(n):

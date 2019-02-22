@@ -1,6 +1,3 @@
-// evaluation_assert data["goals"]["bilinear"]
-// evaluation_assert not data["goals"]["monolinear"]
-// evaluation_assert not data["goals"]["sublinear"]
 #include<cassert>
 
 const int MAXM = 1000;

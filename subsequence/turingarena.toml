@@ -1,0 +1,3 @@
+[scoring]
+goals=["correct_yes_no","correct_with_certificate","single_check_per_text_element"]
+

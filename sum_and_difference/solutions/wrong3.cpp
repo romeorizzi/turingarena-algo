@@ -1,6 +1,3 @@
-// evaluation_assert not data["goals"]["correct"]
-// evaluation_assert data["goals"]["correct-when-non-negative"]
-
 #include<cassert>
 
 int biggest_of_two_different_naturals_with_given_sum_and_difference(int sum, int dif) {

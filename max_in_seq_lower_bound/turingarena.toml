@@ -1,0 +1,2 @@
+[scoring]
+goals=["correct_when_cycles","correct_when_no_cycle","correct_always"]
