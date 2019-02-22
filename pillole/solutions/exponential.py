@@ -1,18 +1,12 @@
+def num_modi_ric(n_i, n_h):
+    assert n_i >= 0 and n_h >= 0
+    if n_i == 0:
+        return 1
+    if n_h == 0:
+        return num_modi_ric(n_i-1, 1)
+    return num_modi_ric(n_i-1, n_h+1) + num_modi_ric(n_i, n_h-1)
+
 def num_modi(n):
-    memo_num_modi = [ [None for _ in range(n+1)] for _ in range(n+1)]
-
-    def num_modi_ric(n_i, n_h):
-        assert n_i >= 0 and n_h >= 0
-        if memo_num_modi[n_i][n_h] != None:
-            return memo_num_modi[n_i][n_h]
-        if n_i == 0:
-            return 1
-        if n_h == 0:
-            memo_num_modi[n_i][n_h] = num_modi_ric(n_i-1, 1)
-            return memo_num_modi[n_i][n_h]
-        memo_num_modi[n_i][n_h] = num_modi_ric(n_i-1, n_h+1) + num_modi_ric(n_i, n_h-1)
-        return memo_num_modi[n_i][n_h]
-
     return num_modi_ric(n, 0)
 
 

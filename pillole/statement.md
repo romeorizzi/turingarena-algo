@@ -39,7 +39,7 @@ pescatoMezza()
 done()
 
 Goal 3: offri un'implementazione corretta ed efficiente della funzione num_modi(N). In pratica,
-il tuo codice dovrà rispondere entro una frazione di secondo per ogni N <= 30.
-Si noti che la risposta è un numero grande fino a 3814986502092304.
+il tuo codice dovrà rispondere entro una frazione di secondo per ogni N <= 20.
+Si noti che la risposta è un numero grande fino a 6564120420.
 (E'per questa ragione che utilizziamo tipi numerici di sufficiente capienza.)
 
