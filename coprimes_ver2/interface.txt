@@ -1,7 +1,7 @@
 const YES = 1;
 const NO = 0;
 
-procedure set_a_and_b(a, b);
+procedure set_a_and_b(a_, b_);
 procedure do_the_hard_computations();
 function gimme_a();
 function gimme_b();
