@@ -1,18 +1,13 @@
 #include"assert.h"
 #define MAXN 30
 
-int memo_ric[MAXN+1][MAXN+1];
-
 int num_modi_ric(int n_i, int n_h) {
   assert(n_i >= 0 && n_h >= 0);
-  if(memo_ric[n_i][n_h] != 0)
-    return memo_ric[n_i][n_h];
   if(n_i == 0)
     return 1;
   if(n_h == 0)
     return num_modi_ric(n_i-1, 1);
-  memo_ric[n_i][n_h] = num_modi_ric(n_i-1, n_h+1) + num_modi_ric(n_i, n_h-1);
-  return memo_ric[n_i][n_h];
+  return num_modi_ric(n_i-1, n_h+1) + num_modi_ric(n_i, n_h-1);
 }
 
 int num_modi(int n) {
