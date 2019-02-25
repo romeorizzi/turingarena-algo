@@ -3,7 +3,11 @@ function is_laminar_family(n,m,card[],set_elem[][]) callbacks {
     procedure open_root_node(s);
     procedure open_child_node(s);
     procedure give_leaf_node(elem);
-    procedure close_node();
+    procedure close_node(s);
+    procedure lay_down_element(elem);
+    procedure open_set(s);
+    procedure close_set(s);
+    procedure minimal_including_set(s, s_big);
 }
 
 main {

@@ -22,6 +22,19 @@ Play a DFS visit of this tree to transmit it through the primitives:
     procedure give_leaf_node(elem);
     procedure close_node().
 
+Goal 4: Certify your positive answers: without affecting its laminarity, add to the family all the singleton sets (number them from m to m+n-1) and the universe set (number it m+n). In case the given set family is laminar, then every set excepte the universe has a unique minimal including set.
+Implement the primitive:
 
+    procedure minimal_including set(s);
 
+This primitive will allow for a simple test of laminarity.
 
+Goal 5: Certify your positive answers: suppose you can lay down the elements in a row so that, for every set in the family, its elements are consecutive. Then we can conclude that the family is indeed laminar.
+We ask you not only to specify the elements one by one, as they occur in the row, but also to tell when the interval of the elements of a set opens and closes.
+Use the following primitives.
+
+    procedure lay_down_element(elem);
+    procedure open_set(s);
+    procedure close_set(s).
+
+These primitives will allow for a simple check of laminarity when such an ordering exists.
