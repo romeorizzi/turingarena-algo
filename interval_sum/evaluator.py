@@ -1,46 +1,47 @@
-from turingarena import *
-
 import random
 import sys
+import turingarena as ta
 
 value_range = range(10, 99)
 
-algorithm = submitted_algorithm()
+ta.goals["correct"] = True:
+ta.goals["linear-prepare"] = True:
+ta.goals["sublinear-query"] = True
 
-
-def main():
-    linear = True
-    #for n in (10, 100, 1000, 10**4, 10**5, 10**6):
-    for n in (10, 100, 1000):
-        linear &= evaluate_case(algorithm, n, a=n//4, b=3*n//4, time_limit=0.1)
-
-    sublinear = linear
-    #sublinear &= evaluate_case(algorithm, 10**6, a=127, b=10**3, time_limit=0.0001)
-    sublinear &= evaluate_case(algorithm, 100, a=10, b=80, time_limit=0.0001)
-
-    evaluation_result(goals=dict(
-        linear=linear,
-        sublinear=sublinear,
-    ))
-
-
-def evaluate_case(algorithm, n, a, b, time_limit):
+def evaluate_case(n, a, b, time_limit_answer, time_limit_prepare):
     vals = [random.choice(value_range) for _ in range(n)]
-    try:
-        with algorithm.run() as process:
-            process.call.get_sequence(len(vals), vals)
-            with process.section(time_limit=time_limit):
-                risp = process.call.interval_sum(a, b)
-    except TimeLimitExceeded:
-        print ("You take too much time to answer a query.")
-        return False
-    except AlgorithmError as e:
-        print("Error: ", e)
-        return False
+    with ta.run_algorithm(ta.submission.source)  as process:
+        try:
+            with process.section(time_limit=time_limit_prepare):
+                process.procedures.get_sequence(len(vals), vals)
+        except ta.TimeLimitExceeded:
+            ta.goals["linear-prepare"] = False
+            print ("You take too much time to get in the array and prepare for the queries to follow.")
+            return
+        except AlgorithmError as e:
+            print("Error: ", e)
+        try:
+            with process.section(time_limit=time_limit_answer):
+                risp = process.functions.interval_sum(a, b)
+        except ta.TimeLimitExceeded:
+            ta.goals["sublinear-query"] = False
+            print ("You take too much time to answer a query.")
+        except ta.AlgorithmError as e:
+            print("Error: ", e)
     if risp != sum(vals[a:b+1]):
-        print ("The sum value returned is not correct.")
-        return False
-    return True
+        ta.goals["correct"] = False
+        ta.goals["linear-prepare"] = False
+        ta.goals["sublinear-query"] = False
+        print ("The sum value returned is not correct. On the query ({a},{b}) you return {risp} instead of {sum(vals[a:b+1])}.\nHere the array was {vals}")
 
 
-main()
+for n in (10, 100, 1000):
+    if ta.goals["correct"] == True:
+        evaluate_case(n, a=n//4, b=3*n//4, time_limit_answer=0.2, time_limit_prepare=0.2)
+    if ta.goals["linear-prepare"] == True:
+        evaluate_case(n, a=n//4, b=3*n//4, time_limit_answer=0.2, time_limit_prepare=0.01)
+    if ta.goals["sublinear-query"] == True:
+       evaluate_case(n, a=n//4, b=3*n//4, time_limit_answer=0.001, time_limit_prepare=0.2)
+print(ta.goals)
+
+

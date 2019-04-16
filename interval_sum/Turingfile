@@ -1,0 +1,6 @@
+[problem]
+title = "Structuring data to prepare for queries: Interval Sums"
+
+[scoring]
+goals=["correct","linear","sublinear"]
+

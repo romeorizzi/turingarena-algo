@@ -1,3 +1,6 @@
+# Structuring data to prepare for queries
+## Interval Sums
+
 First, you receive a sequence of $n$ natural numbers $s[0], s[1], \ldots, s[n-1]$.
 Second and last, you receive a sequence of queries:
 each query specifies an interval $[a,b] \subseteq [0,n-1]$ with $a\leq b$

@@ -1,0 +1,9 @@
+[problem]
+title = "Coprimes"
+
+[parameters]
+digits = 3
+
+[scoring]
+goals = ["correct_answer", "correct_NO_certificate", "correct_YES_certificate"]
+

@@ -1,6 +1,0 @@
-[parameters]
-digits = 3
-
-[scoring]
-goals = ["correct"]
-

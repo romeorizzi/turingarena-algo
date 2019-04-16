@@ -1,26 +1,17 @@
-function get_sequence(int n, int[] s);
-function interval_sum(int a, int b) -> int;
+procedure get_sequence(n, s[]);
+function interval_sum(a, b);
 // interval_sum returns the sum of the elements within the [a,b] interval of s,
 //   that is, the value s[a] + s[a+1] + ...  + s[b]
 // special case: returns 0 if b == a-1
 
 main {
-   var int N;
    read N;   
-   var int[] s;
-   alloc s:N;   
-   for(i:N) {
+   for i to N {
       read s[i]; 
    }
-
    call get_sequence(N, s);
 
-   checkpoint;
-   flush;
-
-   var int a, b, risp;
    read a, b;
-
-   call interval_sum(a, b) -> risp;
+   call risp = interval_sum(a, b);
    write risp;
 }
