@@ -11,6 +11,8 @@ main {
    }
    call get_sequence(N, s);
 
+   checkpoint;
+
    read a, b;
    call risp = interval_sum(a, b);
    write risp;

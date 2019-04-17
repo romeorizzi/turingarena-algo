@@ -4,7 +4,8 @@
 First, you receive a sequence of $n$ natural numbers $s[0], s[1], \ldots, s[n-1]$.
 Second and last, you receive a sequence of queries:
 each query specifies an interval $[a,b] \subseteq [0,n-1]$ with $a\leq b$
-(actually, we also allow for $b=a-1$, which represents an empty query interval).In as short time as possible,
+(actually, we also allow for $b=a-1$, which represents an empty query interval).
+In as short time as possible,
 you must answer such queries by returning the value $\sum_{i=a}^b s[i]$.
 
 You should submit a file containing the implementations of two functions.

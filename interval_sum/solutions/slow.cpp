@@ -1,8 +1,6 @@
-// evaluation_assert data["goals"]["linear"]
-// evaluation_assert not data["goals"]["sublinear"]
 #include<cassert>
 
-const int MAXN = 1000000;
+const int MAXN = 100000;
 int N;
 int val[MAXN];
 
@@ -14,8 +12,8 @@ void get_sequence(int n, int *s) {
 }
 
 int interval_sum(int a, int b) {
-  assert( 0 <= a );
-  assert( a <= b -1 );
+  assert( a >= 0 );
+  assert( b >= a -1 );
   assert( b < N );
   int risp = 0;
   for (int i=a; i<=b; i++)

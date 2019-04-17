@@ -16,10 +16,11 @@ def bin_enc(n):
 
 def display_sol(n):
     bits = bin_enc(n)
-    print(f"n = {n} : bin_enc(n) = {bits} : richiede {num_mosse(n)} mosse")
     if n > 0:
         with ta.run_algorithm("solutions/solution.py") as p:
+            num_moves = p.functions.num_mosse(n)
             right_move = p.functions.mossa(n)
+        print(f"n = {n} : bin_enc(n) = {bits} : richiede {num_mosse} mosse")
         print(f"opera la mossa {right_move}, ed ottieni:")
         if right_move == 1:
             if n%2 == 1:
