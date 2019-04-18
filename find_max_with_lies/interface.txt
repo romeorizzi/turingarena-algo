@@ -1,0 +1,21 @@
+function find_max(int n, int maxLies) -> int;
+// find out the heaviest murble among 0, 1, ..., n-1
+
+callback compare(int a, int b) -> int {
+// returns -1 if a is lighter than b
+// returns  1 if, on the contrary, a is heavier than b
+// calls with a = b are not allowed
+   write a, b;
+   flush;
+   var int answ;
+   read answ;
+   return answ;
+}
+
+main {
+   var int n, maxLies;
+   read n, maxLies;
+   var int answ;
+   call find_max(n, maxLies) -> answ;
+   write answ;
+}

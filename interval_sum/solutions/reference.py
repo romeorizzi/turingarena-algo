@@ -10,8 +10,8 @@ def interval_sum(a, b):
     assert a >= 0
     assert b >= a -1
     assert b < N
-    prefix_sum = _prefix_sum[1:]
-    return prefix_sum[b] - prefix_sum[a-1]
+#    prefix_sum = _prefix_sum[1:]
+    return _prefix_sum[b+1] - _prefix_sum[a]
 
 
 

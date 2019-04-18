@@ -1,0 +1,6 @@
+[problem]
+title = "Structuring data to prepare for queries: Rectangle Sums"
+
+[scoring]
+goals=["correct","linear_prepare","monolinear_query","const_query"]
+
